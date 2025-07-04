@@ -1,12 +1,12 @@
 package nl.wdudokvanheel.neat.flappy.neat;
 
+import nl.wdudokvanheel.neat.flappy.gamelogic.Bird;
+import nl.wdudokvanheel.neat.flappy.gamelogic.FlappyGame;
+import nl.wdudokvanheel.neat.flappy.gamelogic.Obstacle;
 import nl.wdudokvanheel.neural.core.Network;
 import nl.wdudokvanheel.neural.neat.model.Creature;
 import nl.wdudokvanheel.neural.neat.model.Genome;
 import nl.wdudokvanheel.neural.neat.model.Species;
-import nl.wdudokvanheel.neat.flappy.gamelogic.Bird;
-import nl.wdudokvanheel.neat.flappy.gamelogic.FlappyGame;
-import nl.wdudokvanheel.neat.flappy.gamelogic.Obstacle;
 
 public class NeatBird extends Bird implements Creature{
 	private static int COUNTER = 0;
@@ -39,7 +39,7 @@ public class NeatBird extends Bird implements Creature{
 
 		//Run network and get output
 		network.resetNeuronValues();
-		network.setInput(horizontalDistance, verticalDistance);
+		network.setInput(1, horizontalDistance, verticalDistance);
 		outputValue = network.getOutput();
 
 		//See if it wants to jump

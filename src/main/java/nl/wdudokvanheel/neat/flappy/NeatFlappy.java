@@ -78,15 +78,16 @@ public class NeatFlappy {
     private Genome createInitialGenome(InnovationService innovation) {
         Genome genome = new Genome();
 
-        NeuronGene input0 = new NeuronGene(NeuronGeneType.INPUT, innovation.getInputNodeInnovationId(0));
+        NeuronGene inputBias = new NeuronGene(NeuronGeneType.INPUT, innovation.getInputNodeInnovationId(0));
         NeuronGene input1 = new NeuronGene(NeuronGeneType.INPUT, innovation.getInputNodeInnovationId(1));
+        NeuronGene input2 = new NeuronGene(NeuronGeneType.INPUT, innovation.getInputNodeInnovationId(2));
         NeuronGene output = new NeuronGene(NeuronGeneType.OUTPUT, innovation.getOutputNodeInnovationId(0));
 
-        ConnectionGene connectionInput0 = new ConnectionGene(innovation.getConnectionInnovationId(input0, output), input0.getInnovationId(), output.getInnovationId());
-        ConnectionGene connectionInput1 = new ConnectionGene(innovation.getConnectionInnovationId(input1, output), input1.getInnovationId(), output.getInnovationId());
+        ConnectionGene connectionInput0 = new ConnectionGene(innovation.getConnectionInnovationId(input1, output), input1.getInnovationId(), output.getInnovationId());
+        ConnectionGene connectionInput1 = new ConnectionGene(innovation.getConnectionInnovationId(input2, output), input2.getInnovationId(), output.getInnovationId());
         genome.addConnections(connectionInput0, connectionInput1);
 
-        genome.addNeurons(input0, input1, output);
+        genome.addNeurons(inputBias, input1, input2, output);
         return genome;
     }
 

@@ -1,13 +1,13 @@
 package nl.wdudokvanheel.neat.flappy.ui.component;
 
+import nl.wdudokvanheel.neat.flappy.Vector2i;
+import nl.wdudokvanheel.neat.flappy.neat.NeatBird;
 import nl.wdudokvanheel.neat.flappy.ui.NeatFlappyWindow;
 import nl.wdudokvanheel.neural.core.Network;
 import nl.wdudokvanheel.neural.core.neuron.Connection;
 import nl.wdudokvanheel.neural.core.neuron.InputNeuron;
 import nl.wdudokvanheel.neural.core.neuron.Neuron;
 import nl.wdudokvanheel.neural.core.neuron.OutputNeuron;
-import nl.wdudokvanheel.neat.flappy.neat.NeatBird;
-import nl.wdudokvanheel.neat.flappy.Vector2i;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +41,7 @@ public class BirdDetails extends JPanel {
 
     private Network network;
     private int neuronSize = 20;
-    private int neuronSpacing = 40;
+    private int neuronSpacing = 30;
     private int layers = 0;
     private int maxNeuronsPerLayer = 0;
     private Color myColor;
