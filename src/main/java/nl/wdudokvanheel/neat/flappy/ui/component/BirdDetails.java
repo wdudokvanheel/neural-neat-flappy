@@ -1,6 +1,6 @@
 package nl.wdudokvanheel.neat.flappy.ui.component;
 
-import nl.wdudokvanheel.neat.flappy.ui.FlappyApplication;
+import nl.wdudokvanheel.neat.flappy.ui.NeatFlappyWindow;
 import nl.wdudokvanheel.neural.core.Network;
 import nl.wdudokvanheel.neural.core.neuron.Connection;
 import nl.wdudokvanheel.neural.core.neuron.InputNeuron;
@@ -48,7 +48,7 @@ public class BirdDetails extends JPanel {
 
     public BirdDetails(int index) {
         this.index = index;
-        this.myColor = Color.decode(FlappyApplication.BIRD_COLORS[index]);
+        this.myColor = Color.decode(NeatFlappyWindow.BIRD_COLORS[index]);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setSize(new Dimension(WIDTH, HEIGHT));
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
@@ -74,9 +74,9 @@ public class BirdDetails extends JPanel {
 
         BufferedImage image;
         if (bird.jumpWait > 8)
-            image = FlappyApplication.images.get("bird-" + FlappyApplication.BIRD_COLOR_NAMES[index] + "-0");
+            image = NeatFlappyWindow.images.get("bird-" + NeatFlappyWindow.BIRD_COLOR_NAMES[index] + "-0");
         else
-            image = FlappyApplication.images.get("bird-" + FlappyApplication.BIRD_COLOR_NAMES[index] + "-1");
+            image = NeatFlappyWindow.images.get("bird-" + NeatFlappyWindow.BIRD_COLOR_NAMES[index] + "-1");
         g2.drawImage(image, 8, Math.round((HEIGHT - image.getHeight() * 3) / 2), image.getWidth() * 3, image.getHeight() * 3, null);
         g2.setColor(separator);
         g2.drawString("Species " + bird.getSpecies().id, 8, image.getHeight() * 4 + 5);

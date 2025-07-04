@@ -20,11 +20,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-public class FlappyApplication extends JFrame implements KeyListener {
+public class NeatFlappyWindow extends JFrame implements KeyListener {
     public static String[] BIRD_COLOR_NAMES = {"blue", "red", "greena", "purple", "bluel", "yellow", "teal", "lila", "pink", "greenb"};
     public static String[] BIRD_COLORS = {"#134ccf", "#cf0f4c", "#11cf20", "#6c0dcf", "#8badf6", "#f68bad", "#14cfb8", "#bf8bf6", "#cf0e98", "#98cf10"};
 
-    private Logger logger = LoggerFactory.getLogger(FlappyApplication.class);
+    private Logger logger = LoggerFactory.getLogger(NeatFlappyWindow.class);
 
     public static HashMap<String, BufferedImage> images = new HashMap<>();
 
@@ -37,7 +37,7 @@ public class FlappyApplication extends JFrame implements KeyListener {
     private InfoPanel infoPanel;
     private ButtonPanel buttonPanel;
 
-    public FlappyApplication() throws HeadlessException {
+    public NeatFlappyWindow() throws HeadlessException {
         super("Neat Flappy Bird");
         loadImages();
         setResizable(false);
@@ -115,13 +115,13 @@ public class FlappyApplication extends JFrame implements KeyListener {
 
         try {
             for (String filename : filenames) {
-                FlappyApplication.images.put(filename, ImageIO.read((this.getClass().getClassLoader().getResource("images/" + filename + ".png"))));
+                NeatFlappyWindow.images.put(filename, ImageIO.read((this.getClass().getClassLoader().getResource("images/" + filename + ".png"))));
             }
 
             for (String color : BIRD_COLOR_NAMES) {
                 logger.debug("Loading {}", color);
-                FlappyApplication.images.put("bird-" + color + "-0", ImageIO.read((this.getClass().getClassLoader().getResource("images/bird-" + color + "-0.png"))));
-                FlappyApplication.images.put("bird-" + color + "-1", ImageIO.read((this.getClass().getClassLoader().getResource("images/bird-" + color + "-1.png"))));
+                NeatFlappyWindow.images.put("bird-" + color + "-0", ImageIO.read((this.getClass().getClassLoader().getResource("images/bird-" + color + "-0.png"))));
+                NeatFlappyWindow.images.put("bird-" + color + "-1", ImageIO.read((this.getClass().getClassLoader().getResource("images/bird-" + color + "-1.png"))));
 
             }
         } catch (IOException e) {

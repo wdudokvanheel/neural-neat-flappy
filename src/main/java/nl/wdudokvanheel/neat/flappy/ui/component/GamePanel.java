@@ -3,7 +3,7 @@ package nl.wdudokvanheel.neat.flappy.ui.component;
 import nl.wdudokvanheel.neat.flappy.gamelogic.Bird;
 import nl.wdudokvanheel.neat.flappy.gamelogic.FlappyGame;
 import nl.wdudokvanheel.neat.flappy.gamelogic.Obstacle;
-import nl.wdudokvanheel.neat.flappy.ui.FlappyApplication;
+import nl.wdudokvanheel.neat.flappy.ui.NeatFlappyWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,9 +26,9 @@ public class GamePanel extends JPanel {
     };
 
     private FlappyGame game;
-    FlappyApplication ui;
+    NeatFlappyWindow ui;
 
-    public GamePanel(FlappyApplication ui) {
+    public GamePanel(NeatFlappyWindow ui) {
         this.ui = ui;
         setSize(FlappyGame.GAME_WIDTH, FlappyGame.GAME_HEIGHT);
         setPreferredSize(new Dimension(FlappyGame.GAME_WIDTH, FlappyGame.GAME_HEIGHT));
@@ -60,9 +60,9 @@ public class GamePanel extends JPanel {
 
         g.fillRect((int) (x - 5) + 3, (int) (y - 5) + 3, 6, 6);
 
-        BufferedImage body = FlappyApplication.images.get("obstacle-body");
-        BufferedImage capTop = FlappyApplication.images.get("obstacle-cap-top");
-        BufferedImage capBottom = FlappyApplication.images.get("obstacle-cap-bottom");
+        BufferedImage body = NeatFlappyWindow.images.get("obstacle-body");
+        BufferedImage capTop = NeatFlappyWindow.images.get("obstacle-cap-top");
+        BufferedImage capBottom = NeatFlappyWindow.images.get("obstacle-cap-bottom");
 
         for (Obstacle obstacle : game.obstacles) {
             g.drawImage(body, (int) Math.round(obstacle.x + (obstacle.width - (body.getWidth() * 3)) / 2), 0, body.getWidth() * 3, obstacle.top, null);
@@ -81,9 +81,9 @@ public class GamePanel extends JPanel {
             g.setColor(COLOR_BIRD[i % COLOR_BIRD.length]);
 
             if (bird.jumpWait > 8)
-                image = FlappyApplication.images.get("bird-" + FlappyApplication.BIRD_COLOR_NAMES[i % 10] + "-0");
+                image = NeatFlappyWindow.images.get("bird-" + NeatFlappyWindow.BIRD_COLOR_NAMES[i % 10] + "-0");
             else
-                image = FlappyApplication.images.get("bird-" + FlappyApplication.BIRD_COLOR_NAMES[i % 10] + "-1");
+                image = NeatFlappyWindow.images.get("bird-" + NeatFlappyWindow.BIRD_COLOR_NAMES[i % 10] + "-1");
 
             g.drawImage(image, (int) Math.round(FlappyGame.xPosition - image.getWidth() * 1.5), (int) Math.round(bird.position - image.getHeight() * 1.5), image.getWidth() * 3, image.getHeight() * 3, null);
 

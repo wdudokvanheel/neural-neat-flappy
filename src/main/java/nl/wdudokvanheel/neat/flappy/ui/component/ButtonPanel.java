@@ -1,6 +1,6 @@
 package nl.wdudokvanheel.neat.flappy.ui.component;
 
-import nl.wdudokvanheel.neat.flappy.ui.FlappyApplication;
+import nl.wdudokvanheel.neat.flappy.ui.NeatFlappyWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,9 +10,9 @@ public class ButtonPanel extends JPanel{
 	JButton speedBtn = new JButton("");
 	JButton pauseBtn = new JButton("");
 	JButton noScreen = new JButton("");
-	FlappyApplication ui;
+	NeatFlappyWindow ui;
 
-	public ButtonPanel(FlappyApplication ui){
+	public ButtonPanel(NeatFlappyWindow ui){
 		this.ui = ui;
 		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 		speedBtn.setAction(new Action(){

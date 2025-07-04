@@ -4,7 +4,7 @@ import nl.wdudokvanheel.neat.flappy.gamelogic.Bird;
 import nl.wdudokvanheel.neat.flappy.gamelogic.FlappyGame;
 import nl.wdudokvanheel.neat.flappy.neat.BirdFactory;
 import nl.wdudokvanheel.neat.flappy.neat.NeatBird;
-import nl.wdudokvanheel.neat.flappy.ui.FlappyApplication;
+import nl.wdudokvanheel.neat.flappy.ui.NeatFlappyWindow;
 import nl.wdudokvanheel.neural.neat.NeatEvolution;
 import nl.wdudokvanheel.neural.neat.model.*;
 import nl.wdudokvanheel.neural.neat.service.InnovationService;
@@ -22,7 +22,7 @@ public class NeatFlappy {
     private final Logger logger = LoggerFactory.getLogger(NeatFlappy.class);
 
     private NeatContext context;
-    private FlappyApplication ui;
+    private NeatFlappyWindow ui;
 
     public static void main(String[] args) {
         new NeatFlappy().start();
@@ -30,7 +30,7 @@ public class NeatFlappy {
 
     private void start() {
         // Setup UI
-        ui = new FlappyApplication();
+        ui = new NeatFlappyWindow();
 
         // Create NEAT context
         context = NeatEvolution.createContext(new BirdFactory());
