@@ -37,13 +37,15 @@ public class NeatFlappy {
 
         // Neat configuration
         context.configuration.populationSize = 10;
-        context.configuration.targetSpecies = 5;
-        context.configuration.speciesThreshold = 2;
-        context.configuration.minimumSpeciesSizeForChampionCopy = 2;
+        context.configuration.targetSpecies = 4;
+        context.configuration.speciesThreshold = 1;
+        context.configuration.minimumSpeciesSizeForChampionCopy = 1;
         context.configuration.setInitialLinks = true;
+        context.configuration.copyChampionsAllSpecies = false;
         context.configuration.mutateAddConnectionProbability = 0.05;
         context.configuration.mutateToggleConnectionProbability = 0.3;
         context.configuration.mutateAddNeuronProbability = 0.01;
+        context.configuration.multipleMutationsPerGenome = true;
 
         // Create blueprint creature with a simple genome
         Genome blueprintGenome = createInitialGenome(context.innovationService);
@@ -62,6 +64,7 @@ public class NeatFlappy {
 
             // Get the fittest creature from the context
             Creature fittestCreature = context.getFittestCreature();
+
             if (fittestCreature != null) {
                 logger.debug("Champion score: {}", fittestCreature.getFitness());
                 ui.setTitle("Neat Flappy Bird :: Generation " + context.generation + " :: " + context.creatures.size() + " creatures :: " + context.species.size() + "/" + context.configuration.targetSpecies + " Species (" + Print.format(context.configuration.speciesThreshold) + ") :: Fitness " + Print.format(fittestCreature.getFitness()));
