@@ -37,7 +37,7 @@ public class NeatFlappy {
 
         // Neat configuration
         context.configuration.populationSize = 10;
-        context.configuration.targetSpecies = 4;
+        context.configuration.targetSpecies = 3;
         context.configuration.speciesThreshold = 1;
         context.configuration.minimumSpeciesSizeForChampionCopy = 1;
         context.configuration.setInitialLinks = true;
