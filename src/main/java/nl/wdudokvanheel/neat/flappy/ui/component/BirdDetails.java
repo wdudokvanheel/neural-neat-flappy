@@ -2,11 +2,11 @@ package nl.wdudokvanheel.neat.flappy.ui.component;
 
 import nl.wdudokvanheel.neat.flappy.neat.NeatBird;
 import nl.wdudokvanheel.neat.flappy.ui.NeatFlappyWindow;
-import nl.wdudokvanheel.neural.core.Network;
-import nl.wdudokvanheel.neural.core.neuron.Connection;
-import nl.wdudokvanheel.neural.core.neuron.InputNeuron;
-import nl.wdudokvanheel.neural.core.neuron.Neuron;
-import nl.wdudokvanheel.neural.core.neuron.OutputNeuron;
+import nl.wdudokvanheel.neural.network.Network;
+import nl.wdudokvanheel.neural.network.neuron.Connection;
+import nl.wdudokvanheel.neural.network.neuron.InputNeuron;
+import nl.wdudokvanheel.neural.network.neuron.Neuron;
+import nl.wdudokvanheel.neural.network.neuron.OutputNeuron;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
