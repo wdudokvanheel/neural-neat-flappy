@@ -7,6 +7,8 @@ generations to master the game mechanics.
 **Please note** that with a tiny population of only 10 birds, it can take a while
 for them to find the solution, in a more realistic environment you'd crank the population up way higher.
 
+![Neat Flappy screenshot](docs/flappy-screenshot.png)
+
 ## Features
 
 * **Real-time visualization** of multiple birds playing Flappy Bird concurrently
