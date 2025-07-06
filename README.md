@@ -34,7 +34,7 @@ for them to find the solution, in a more realistic environment you'd crank the p
 3. **Run the simulation**:
 
    ```bash
-   java -cp target/neat-flappy-1.0.jar nl.wdudokvanheel.neat.flappy.NeatFlappy
+   java -jar target/neat-flappy-1.0.jar
    ```
 
    The main window will appear, showing the game panel and per-bird details in real time. The simulation starts out in a
