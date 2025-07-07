@@ -3,16 +3,16 @@ package nl.wdudokvanheel.neat.flappy.neat;
 import nl.wdudokvanheel.neat.flappy.gamelogic.Bird;
 import nl.wdudokvanheel.neat.flappy.gamelogic.FlappyGame;
 import nl.wdudokvanheel.neat.flappy.gamelogic.Obstacle;
-import nl.wdudokvanheel.neural.neat.Creature;
+import nl.wdudokvanheel.neural.neat.CreatureInterface;
 import nl.wdudokvanheel.neural.neat.Species;
 import nl.wdudokvanheel.neural.neat.genome.Genome;
 import nl.wdudokvanheel.neural.network.Network;
 
-public class NeatBird extends Bird implements Creature{
+public class NeatBird extends Bird implements CreatureInterface<NeatBird> {
 	private static int COUNTER = 0;
 	public int id;
 	private Genome genome;
-	private Species species;
+	private Species<NeatBird> species;
 	private Network network;
 	public double[] inputValues = new double[2];
 	public double outputValue = 0;
@@ -66,7 +66,7 @@ public class NeatBird extends Bird implements Creature{
 	}
 
 	@Override
-	public Species getSpecies(){
+	public Species<NeatBird> getSpecies(){
 		return species;
 	}
 

@@ -5,7 +5,6 @@ import nl.wdudokvanheel.neat.flappy.gamelogic.FlappyGame;
 import nl.wdudokvanheel.neat.flappy.neat.BirdFactory;
 import nl.wdudokvanheel.neat.flappy.neat.NeatBird;
 import nl.wdudokvanheel.neat.flappy.ui.NeatFlappyWindow;
-import nl.wdudokvanheel.neural.neat.Creature;
 import nl.wdudokvanheel.neural.neat.NeatContext;
 import nl.wdudokvanheel.neural.neat.NeatEvolution;
 import nl.wdudokvanheel.neural.neat.genome.ConnectionGene;
@@ -17,7 +16,6 @@ import nl.wdudokvanheel.neural.util.Print;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +24,7 @@ public class NeatFlappy {
 
     private final Logger logger = LoggerFactory.getLogger(NeatFlappy.class);
 
-    private NeatContext context;
+    private NeatContext<NeatBird> context;
     private NeatFlappyWindow ui;
 
     public static void main(String[] args) {
@@ -54,7 +52,7 @@ public class NeatFlappy {
 
         // Create blueprint creature with a simple genome
         Genome blueprintGenome = createInitialGenome(context.innovationService);
-        Creature blueprintCreature = context.creatureFactory.createNewCreature(blueprintGenome);
+        NeatBird blueprintCreature = context.creatureFactory.createNewCreature(blueprintGenome);
 
         // Setup initial population with the blueprint creature
         NeatEvolution.generateInitialPopulation(context, blueprintCreature);
@@ -62,13 +60,13 @@ public class NeatFlappy {
         // Main loop
         for (int i = 0; i < MAX_GENERATIONS; i++) {
             // Get all the birds from the NEAT context
-            List<NeatBird> birds = getBirds();
+            List<NeatBird> birds = context.creatures;
 
             // Run the game with the birds
             scoreBirds(birds);
 
             // Get the fittest creature from the context
-            Creature fittestCreature = context.getFittestCreature();
+            NeatBird fittestCreature = context.getFittestCreature();
 
             if (fittestCreature != null) {
                 logger.debug("Champion score: {}", fittestCreature.getFitness());
@@ -99,19 +97,15 @@ public class NeatFlappy {
         return genome;
     }
 
-    private List<NeatBird> getBirds() {
-        List<NeatBird> birds = new ArrayList<>();
-        for (Creature creature : context.creatures) {
-            if (creature instanceof NeatBird) {
-                birds.add((NeatBird) creature);
-            }
-        }
-        return birds;
-    }
-
     private void scoreBirds(List<NeatBird> birds) {
         FlappyGame game = new FlappyGame();
-        List<Bird> plain = birds.stream().map(bird -> (Bird) bird).collect(Collectors.toList());
+
+        // Convert NeatBirds to the expected Bird class for the game
+        List<Bird> plain = birds
+                .stream()
+                .map(bird -> (Bird) bird)
+                .collect(Collectors.toList());
+
         game.addBirds(plain);
         ui.playGame(game);
     }
