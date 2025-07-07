@@ -7,10 +7,7 @@ import nl.wdudokvanheel.neat.flappy.neat.NeatBird;
 import nl.wdudokvanheel.neat.flappy.ui.NeatFlappyWindow;
 import nl.wdudokvanheel.neural.neat.NeatContext;
 import nl.wdudokvanheel.neural.neat.NeatEvolution;
-import nl.wdudokvanheel.neural.neat.genome.ConnectionGene;
-import nl.wdudokvanheel.neural.neat.genome.Genome;
-import nl.wdudokvanheel.neural.neat.genome.NeuronGene;
-import nl.wdudokvanheel.neural.neat.genome.NeuronGeneType;
+import nl.wdudokvanheel.neural.neat.genome.*;
 import nl.wdudokvanheel.neural.neat.service.InnovationService;
 import nl.wdudokvanheel.neural.util.Print;
 import org.slf4j.Logger;
@@ -47,7 +44,7 @@ public class NeatFlappy {
         context.configuration.copyChampionsAllSpecies = false;
         context.configuration.mutateAddConnectionProbability = 0.05;
         context.configuration.mutateToggleConnectionProbability = 0.3;
-        context.configuration.mutateAddNeuronProbability = 0.01;
+        context.configuration.mutateAddNeuronProbability = 0.2;
         context.configuration.multipleMutationsPerGenome = true;
 
         // Create blueprint creature with a simple genome
@@ -84,10 +81,10 @@ public class NeatFlappy {
     private Genome createInitialGenome(InnovationService innovation) {
         Genome genome = new Genome();
 
-        NeuronGene inputBias = new NeuronGene(NeuronGeneType.INPUT, innovation.getInputNodeInnovationId(0));
-        NeuronGene input1 = new NeuronGene(NeuronGeneType.INPUT, innovation.getInputNodeInnovationId(1));
-        NeuronGene input2 = new NeuronGene(NeuronGeneType.INPUT, innovation.getInputNodeInnovationId(2));
-        NeuronGene output = new NeuronGene(NeuronGeneType.OUTPUT, innovation.getOutputNodeInnovationId(0));
+        NeuronGene inputBias = new InputNeuronGene(innovation.getInputNodeInnovationId(0));
+        NeuronGene input1 = new InputNeuronGene(innovation.getInputNodeInnovationId(1));
+        NeuronGene input2 = new InputNeuronGene(innovation.getInputNodeInnovationId(2));
+        NeuronGene output = new OutputNeuronGene(innovation.getOutputNodeInnovationId(0));
 
         ConnectionGene connectionInput0 = new ConnectionGene(innovation.getConnectionInnovationId(input1, output), input1.getInnovationId(), output.getInnovationId());
         ConnectionGene connectionInput1 = new ConnectionGene(innovation.getConnectionInnovationId(input2, output), input2.getInnovationId(), output.getInnovationId());
