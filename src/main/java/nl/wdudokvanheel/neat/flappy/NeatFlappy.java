@@ -7,7 +7,10 @@ import nl.wdudokvanheel.neat.flappy.neat.NeatBird;
 import nl.wdudokvanheel.neat.flappy.ui.NeatFlappyWindow;
 import nl.wdudokvanheel.neural.neat.NeatContext;
 import nl.wdudokvanheel.neural.neat.NeatEvolution;
-import nl.wdudokvanheel.neural.neat.genome.*;
+import nl.wdudokvanheel.neural.neat.genome.Genome;
+import nl.wdudokvanheel.neural.neat.genome.InputNeuronGene;
+import nl.wdudokvanheel.neural.neat.genome.OutputNeuronGene;
+import nl.wdudokvanheel.neural.neat.service.GenomeBuilder;
 import nl.wdudokvanheel.neural.neat.service.InnovationService;
 import nl.wdudokvanheel.neural.util.Print;
 import org.slf4j.Logger;
@@ -79,19 +82,14 @@ public class NeatFlappy {
     }
 
     private Genome createInitialGenome(InnovationService innovation) {
-        Genome genome = new Genome();
+        GenomeBuilder builder = new GenomeBuilder(innovation);
+        InputNeuronGene[] inputs = builder.addInputNeurons(3);
+        OutputNeuronGene output = builder.addOutputNeuron(0);
 
-        NeuronGene inputBias = new InputNeuronGene(innovation.getInputNodeInnovationId(0));
-        NeuronGene input1 = new InputNeuronGene(innovation.getInputNodeInnovationId(1));
-        NeuronGene input2 = new InputNeuronGene(innovation.getInputNodeInnovationId(2));
-        NeuronGene output = new OutputNeuronGene(innovation.getOutputNodeInnovationId(0));
+        builder.addConnection(inputs[1], output);
+        builder.addConnection(inputs[2], output);
 
-        ConnectionGene connectionInput0 = new ConnectionGene(innovation.getConnectionInnovationId(input1, output), input1.getInnovationId(), output.getInnovationId());
-        ConnectionGene connectionInput1 = new ConnectionGene(innovation.getConnectionInnovationId(input2, output), input2.getInnovationId(), output.getInnovationId());
-        genome.addConnections(connectionInput0, connectionInput1);
-
-        genome.addNeurons(inputBias, input1, input2, output);
-        return genome;
+        return builder.getGenome();
     }
 
     private void scoreBirds(List<NeatBird> birds) {
