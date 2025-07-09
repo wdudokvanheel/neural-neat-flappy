@@ -43,7 +43,7 @@ public class NeatFlappy {
         context.configuration.targetSpecies = 3;
         context.configuration.speciesThreshold = 1;
         context.configuration.minimumSpeciesSizeForChampionCopy = 1;
-        context.configuration.setInitialLinks = true;
+        context.configuration.randomizeInitialLinks = true;
         context.configuration.copyChampionsAllSpecies = false;
         context.configuration.mutateAddConnectionProbability = 0.05;
         context.configuration.mutateToggleConnectionProbability = 0.3;
